@@ -16,7 +16,7 @@
         "format": "binary",
         "url": "https://raw.githubusercontent.com/FPPweb3/sb-rule-sets/main/torrent-clients.src"
       }
-    ],
+    ]
   }
 }
 ```
