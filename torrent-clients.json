@@ -94,7 +94,8 @@
             "com.delphicoder.flud.paid",
             "org.transdroid.lite",
             "idm.internet.download.manager",
-            "com.bitcomet.android"
+            "com.bitcomet.android",
+            "ru.yourok.torrserve"
           ]
         }
       ]
