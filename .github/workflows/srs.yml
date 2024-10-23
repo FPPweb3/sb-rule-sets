@@ -34,6 +34,7 @@ jobs:
           NO_SKIP: true
         run: |
          sing-box rule-set compile --output /home/runner/work/sb-rule-sets/sb-rule-sets/torrent-clients.srs /home/runner/work/sb-rule-sets/sb-rule-sets/torrent-clients.json
+         sing-box rule-set compile --output /home/runner/work/sb-rule-sets/sb-rule-sets/ru-app-list.srs /home/runner/work/sb-rule-sets/sb-rule-sets/ru-app-list.json
           
       - name: Get current date
         id: date
