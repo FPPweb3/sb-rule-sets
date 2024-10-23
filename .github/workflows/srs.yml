@@ -33,7 +33,7 @@ jobs:
         env:
           NO_SKIP: true
         run: |
-         sing-box rule-set compile [--output torrent-clients.srs] torrent-clients.json
+         sing-box rule-set compile --output torrent-clients.srs torrent-clients.json
           
       - name: Get current date
         id: date
