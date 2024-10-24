@@ -18,7 +18,7 @@
         "type": "remote",
         "tag": "torrent-clients",
         "format": "source",
-        "url": "https://raw.githubusercontent.com/FPPweb3/sb-rule-sets/main/torrent-clients.json"
+        "url": "https://raw.githubusercontent.com/legiz-ru/sb-rule-sets/main/torrent-clients.json"
       }
     ]
   }
@@ -43,7 +43,7 @@
         "type": "remote",
         "tag": "torrent-clients",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/FPPweb3/sb-rule-sets/main/torrent-clients.srs"
+        "url": "https://raw.githubusercontent.com/legiz-ru/sb-rule-sets/main/torrent-clients.srs"
       }
     ]
   }
@@ -70,7 +70,7 @@
         "type": "remote",
         "tag": "torrent-clients",
         "format": "source",
-        "url": "https://raw.githubusercontent.com/FPPweb3/sb-rule-sets/main/ru-app-list.json"
+        "url": "https://raw.githubusercontent.com/legiz-ru/sb-rule-sets/main/ru-app-list.json"
       }
     ]
   }
@@ -95,7 +95,7 @@
         "type": "remote",
         "tag": "torrent-clients",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/FPPweb3/sb-rule-sets/main/ru-app-list.srs"
+        "url": "https://raw.githubusercontent.com/legiz-ru/sb-rule-sets/main/ru-app-list.srs"
       }
     ]
   }
