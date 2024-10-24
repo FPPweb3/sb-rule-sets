@@ -68,7 +68,7 @@
     "rule_set": [
       {
         "type": "remote",
-        "tag": "torrent-clients",
+        "tag": "ru-app-list",
         "format": "source",
         "url": "https://raw.githubusercontent.com/legiz-ru/sb-rule-sets/main/ru-app-list.json"
       }
@@ -93,7 +93,7 @@
     "rule_set": [
       {
         "type": "remote",
-        "tag": "torrent-clients",
+        "tag": "ru-app-list",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/legiz-ru/sb-rule-sets/main/ru-app-list.srs"
       }
