@@ -104,3 +104,57 @@
 
 </details>
 
+## no-russia-hosts
+This rule-set generated from [this domain list](https://github.com/dartraiden/no-russia-hosts)
+
+<details>
+  <summary>json source</summary>
+  
+```json
+{
+  "route": {
+    "rules": [
+      {
+        "rule_set": "no-russia-hosts",
+        "outbound": "proxy"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "no-russia-hosts",
+        "format": "source",
+        "url": "https://github.com/legiz-ru/sb-rule-sets/raw/main/no-russia-hosts.json"
+      }
+    ]
+  }
+}
+```
+
+</details>
+<details>
+  <summary>binary rule-set .srs</summary>
+  
+```json
+{
+  "route": {
+    "rules": [
+      {
+        "rule_set": "no-russia-hosts",
+        "outbound": "proxy"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "no-russia-hosts",
+        "format": "binary",
+        "url": "https://github.com/legiz-ru/sb-rule-sets/raw/main/no-russia-hosts.srs"
+      }
+    ]
+  }
+}
+```
+
+</details>
+
