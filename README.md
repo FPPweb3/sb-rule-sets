@@ -51,6 +51,14 @@
 ```
 
 </details>
+<details>
+  <summary>add to vpnbot</summary>
+  
+```shell
+direct:86400s:https://github.com/legiz-ru/sb-rule-sets/raw/main/torrent-clients.srs
+```
+
+</details>
 
 ## ru-app-list (android)
 <details>
@@ -100,6 +108,14 @@
     ]
   }
 }
+```
+
+</details>
+<details>
+  <summary>add to vpnbot</summary>
+  
+```shell
+direct:86400s:https://github.com/legiz-ru/sb-rule-sets/raw/main/ru-app-list.srs
 ```
 
 </details>
@@ -154,6 +170,14 @@ This rule-set generated from [this domain list](https://github.com/dartraiden/no
     ]
   }
 }
+```
+
+</details>
+<details>
+  <summary>add to vpnbot</summary>
+  
+```shell
+proxy:86400s:https://github.com/legiz-ru/sb-rule-sets/raw/main/no-russia-hosts.srs
 ```
 
 </details>
