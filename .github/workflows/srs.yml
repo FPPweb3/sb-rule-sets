@@ -35,6 +35,12 @@ jobs:
         run: |
          sing-box rule-set compile --output /home/runner/work/sb-rule-sets/sb-rule-sets/torrent-clients.srs /home/runner/work/sb-rule-sets/sb-rule-sets/torrent-clients.json
          sing-box rule-set compile --output /home/runner/work/sb-rule-sets/sb-rule-sets/ru-app-list.srs /home/runner/work/sb-rule-sets/sb-rule-sets/ru-app-list.json
+         # no-russia-hosts
+         wget -O no-russia-hosts.txt https://github.com/dartraiden/no-russia-hosts/raw/master/hosts.txt
+         sing-box rule-set convert --type adguard --output /home/runner/work/sb-rule-sets/sb-rule-sets/no-russia-hosts.srs hosts.txt
+         sing-box rule-set decompile /home/runner/work/sb-rule-sets/sb-rule-sets/no-russia-hosts.srs --output /home/runner/work/sb-rule-sets/sb-rule-sets/no-russia-hosts.json
+         rm no-russia-hosts.txt
+         
           
       - name: Get current date
         id: date
