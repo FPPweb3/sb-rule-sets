@@ -33,7 +33,16 @@
             "com.twitter.android",
             "com.x.xtv",
             "com.canva.editor",
-            "com.openai.chatgpt"
+            "com.openai.chatgpt",
+            "com.supercell.brawlstars",
+            "ru.fourpda.client",
+            "org.softeg.slartus.forpdaplus",
+            "com.mcdonalds.mobileapp",
+            "sinet.startup.inDriver",
+            "com.microsoft.bing",
+            "com.microsoft.copilot",
+            "com.microsoft.designer",
+            "com.zionhuang.music"
           ]
         }
       ]
