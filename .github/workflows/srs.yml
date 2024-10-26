@@ -44,6 +44,7 @@ jobs:
          wget -O no-russia-hosts.txt https://github.com/dartraiden/no-russia-hosts/raw/master/hosts.txt
          sing-box rule-set convert --type adguard --output /home/runner/work/sb-rule-sets/sb-rule-sets/no-russia-hosts.srs no-russia-hosts.txt
          sing-box rule-set decompile /home/runner/work/sb-rule-sets/sb-rule-sets/no-russia-hosts.srs --output /home/runner/work/sb-rule-sets/sb-rule-sets/no-russia-hosts.json
+         jq '.rules[] += {"type": "logical", "mode": "or"}' no-russia-hosts.json > temp.json && mv temp.json no-russia-hosts.json
          rm no-russia-hosts.txt
          sing-box rule-set compile --output /home/runner/work/sb-rule-sets/sb-rule-sets/no-russia-hosts.srs /home/runner/work/sb-rule-sets/sb-rule-sets/no-russia-hosts.json
          
