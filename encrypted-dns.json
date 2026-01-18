@@ -1,0 +1,75 @@
+{
+  "version": 3,
+  "rules": [
+    {
+      "port": 853
+    },
+    {
+      "type": "logical",
+      "mode": "and",
+      "rules": [
+        {
+          "type": "logical",
+          "mode": "or",
+          "rules": [
+            {
+              "domain": "dns.google",
+              "ip_cidr": [ "8.8.8.8", "8.8.4.4", "2001:4860:4860::8800/120" ]
+            },
+            {
+              "domain_suffix": "cloudflare-dns.com",
+              "domain": [ "dns.cloudflare.com", "one.one.one.one" ],
+              "ip_cidr": [ "1.1.1.0/30", "1.0.0.0/30", "2606:4700:4700::1000/116" ]
+            },
+            {
+              "domain_regex": "^dns.*\\.quad9\\.net$",
+              "ip_cidr": [ "9.9.9.9/30", "149.112.112.0/25", "2620:fe::/104" ]
+            },
+            {
+              "domain_suffix": [ "d.adguard-dns.com", "dns.adguard-dns.com" ],
+              "domain": [ "unfiltered.adguard-dns.com", "family.adguard-dns.com" ],
+              "ip_cidr": [ "94.140.14.0/23", "2a10:50c0::/48" ]
+            },
+            {
+              "domain_suffix": "dns.nextdns.io",
+              "ip_cidr": [ "45.90.28.0/22", "2a07:a8c0::/29" ]
+            },
+            {
+              "domain_suffix": [ "doh.cleanbrowsing.org", "dot.cleanbrowsing.org" ],
+              "domain_regex": "^.*dns\\.cleanbrowsing\\.org$",
+              "ip_cidr": [ "185.228.168.0/23", "2a0d:2a00:1::/126", "2a0d:2a00:2::/126" ]
+            },
+            {
+              "domain_suffix": ".opendns.com",
+              "ip_cidr": [ "208.67.220.0/22", "2620:119:35::/119", "2620:119:53::/119", "2620:0:ccc::2", "2620:0:ccd::2" ]
+            },
+            {
+              "domain_suffix": [ "dns.mullvad.net", "doh.mullvad.net", "dot.mullvad.net" ],
+              "ip_cidr": [ "194.242.2.0/28", "2a07:e340::/124" ]
+            },
+            {
+              "domain": [ "dns.comss.one", "router.comss.one" ],
+              "ip_cidr": [ "83.220.169.155", "212.109.195.93", "195.133.25.16" ]
+            },
+            {
+              "domain_suffix": "dot.dns.yandex.net",
+              "ip_cidr": [ "77.88.8.0/25", "2a02:6b8::feed:0/112", "2a02:6b8:0:1::feed:0/112" ]
+            },
+            {
+              "domain_suffix": [ "dns.sb", "doh.sb", "dot.sb" ],
+              "ip_cidr": [ "185.222.222.222", "45.11.45.11", "2a09::", "2a11::" ]
+            },
+            {
+              "domain_suffix": [ "dns.controld.com", "freedns.controld.com" ],
+              "ip_cidr": [ "76.76.2.0/24", "76.76.10.0/24", "2606:1a40::/47" ]
+            }
+          ]
+        },
+        {
+          "port": 53,
+          "invert": true
+        }
+      ]
+    }
+  ]
+}
