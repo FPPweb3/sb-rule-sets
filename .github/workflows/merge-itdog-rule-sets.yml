@@ -19,9 +19,6 @@ defaults:
   run:
     shell: bash --noprofile --norc -euo pipefail {0}
 
-env:
-  DOWNLOAD_URL: https://github.com/itdoginfo/allow-domains/releases/latest/download
-
 jobs:
   decompile:
     name: Decompile ${{ matrix.service }}
@@ -29,7 +26,7 @@ jobs:
     timeout-minutes: 10
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 6
       matrix:
         service:
           - telegram
@@ -49,6 +46,8 @@ jobs:
 
     steps:
       - name: Download ${{ matrix.service }}.srs
+        env:
+          DOWNLOAD_URL: https://github.com/itdoginfo/allow-domains/releases/latest/download
         run: |
           url="${DOWNLOAD_URL}/${{ matrix.service }}.srs"
           out="${{ matrix.service }}.srs"
