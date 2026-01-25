@@ -1,0 +1,148 @@
+name: Merge itdoginfo rule-sets
+
+on:
+  schedule:
+    - cron: "30 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  DOWNLOAD_URL: https://github.com/itdoginfo/allow-domains/releases/latest/download
+
+jobs:
+  decompile:
+    name: Decompile ${{ matrix.service }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        service:
+          - telegram
+          - cloudflare
+          - hetzner
+          - ovh
+          - digitalocean
+          - cloudfront
+          - roblox
+          - google_ai
+          - google_play
+          - hodca
+          - discord
+          - twitter
+          - meta
+          - russia_inside
+
+    steps:
+      - name: Download ${{ matrix.service }}.srs
+        run: |
+          set -euo pipefail
+          url="${DOWNLOAD_URL}/${{ matrix.service }}.srs"
+          out="${{ matrix.service }}.srs"
+
+          curl -fsSL \
+            --retry 5 --retry-delay 2 --retry-all-errors \
+            --connect-timeout 10 --max-time 120 \
+            -o "$out" "$url"
+
+          test -s "$out"
+
+      - name: Decompile to JSON (source format)
+        uses: docker://ghcr.io/sagernet/sing-box:v1.12.17
+        with:
+          args: >-
+            rule-set decompile
+            ${{ matrix.service }}.srs
+
+      - name: Validate decompiled JSON
+        run: |
+          set -euo pipefail
+          test -s "${{ matrix.service }}.json"
+          python -m json.tool "${{ matrix.service }}.json" >/dev/null
+
+      - name: Upload decompiled JSON
+        uses: actions/upload-artifact@v6
+        with:
+          name: decompiled-${{ matrix.service }}
+          path: ${{ matrix.service }}.json
+          if-no-files-found: error
+          retention-days: 1
+
+  merge_compile_commit:
+    name: Merge + compile + commit
+    if: ${{ always() && !cancelled() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    needs: decompile
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Download all JSON artifacts
+        uses: actions/download-artifact@v7
+        with:
+          pattern: decompiled-*
+          path: decompiled-rule-sets
+          merge-multiple: true
+
+      - name: List JSON artifacts that will be merged
+        run: |
+          ls -1 decompiled-rule-sets/*.json
+
+      - name: Merge to itdog-combined.json
+        uses: docker://ghcr.io/sagernet/sing-box:v1.12.17
+        with:
+          args: >-
+            rule-set merge
+            itdog-combined.json
+            -C decompiled-rule-sets
+
+      - name: Validate combined JSON
+        run: |
+          set -euo pipefail
+          test -s itdog-combined.json
+          python -m json.tool itdog-combined.json >/dev/null
+
+      - name: Compile to itdog-combined.srs (repo root)
+        uses: docker://ghcr.io/sagernet/sing-box:v1.12.17
+        with:
+          args: >-
+            rule-set compile
+            itdog-combined.json
+
+      - name: Ensure combined SRS exists and is non-empty
+        run: |
+          set -euo pipefail
+          test -s itdog-combined.srs
+
+      - name: Commit & push (only if changed)
+        run: |
+          set -euo pipefail
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add itdog-combined.json itdog-combined.srs
+
+          if git diff --cached --quiet; then
+            echo "No changes, skipping commit."
+            exit 0
+          fi
+
+          git commit -m "chore: update itdog combined rule-set"
+          git push
