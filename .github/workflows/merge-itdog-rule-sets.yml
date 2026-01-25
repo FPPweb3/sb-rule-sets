@@ -2,7 +2,7 @@ name: Merge itdoginfo rule-sets
 
 on:
   schedule:
-    - cron: "30 6 * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
   push:
     paths:
