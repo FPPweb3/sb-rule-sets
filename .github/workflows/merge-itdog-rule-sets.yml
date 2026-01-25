@@ -117,7 +117,7 @@ jobs:
           test -s itdog-combined.json
           python -m json.tool itdog-combined.json >/dev/null
 
-      - name: Compile to itdog-combined.srs (repo root)
+      - name: Compile to itdog-combined.srs
         uses: docker://ghcr.io/sagernet/sing-box:v1.12.17
         with:
           args: >-
