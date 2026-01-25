@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "30 6 * * *"
   workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/merge-itdog-rule-sets.yml
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -14,7 +17,7 @@ permissions:
 
 defaults:
   run:
-    shell: bash
+    shell: bash --noprofile --norc -euo pipefail {0}
 
 env:
   DOWNLOAD_URL: https://github.com/itdoginfo/allow-domains/releases/latest/download
@@ -47,7 +50,6 @@ jobs:
     steps:
       - name: Download ${{ matrix.service }}.srs
         run: |
-          set -euo pipefail
           url="${DOWNLOAD_URL}/${{ matrix.service }}.srs"
           out="${{ matrix.service }}.srs"
 
@@ -67,7 +69,6 @@ jobs:
 
       - name: Validate decompiled JSON
         run: |
-          set -euo pipefail
           test -s "${{ matrix.service }}.json"
           python -m json.tool "${{ matrix.service }}.json" >/dev/null
 
@@ -114,7 +115,6 @@ jobs:
 
       - name: Validate combined JSON
         run: |
-          set -euo pipefail
           test -s itdog-combined.json
           python -m json.tool itdog-combined.json >/dev/null
 
@@ -127,13 +127,10 @@ jobs:
 
       - name: Ensure combined SRS exists and is non-empty
         run: |
-          set -euo pipefail
           test -s itdog-combined.srs
 
       - name: Commit & push (only if changed)
         run: |
-          set -euo pipefail
-
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
