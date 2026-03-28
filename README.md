@@ -67,6 +67,7 @@
       },
       {
         "rule_set": "itdog-combined",
+        "ip_accept_any": true,
         "server": "dns-vpn"
       },
       {
