@@ -418,6 +418,11 @@
       "port_range": "50000:65535"
     },
     {
+      "network": "udp",
+      "ip_cidr": "104.16.0.0/12",
+      "port_range": "19000:20000"
+    },
+    {
       "domain_suffix": [
         "ai.google.dev",
         "aida.googleapis.com",
