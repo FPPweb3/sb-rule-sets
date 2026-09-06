@@ -1551,18 +1551,6 @@
     },
     {
       "domain_suffix": [
-        "rbxcdn.com",
-        "rbxinfra.net",
-        "roblox.com",
-        "robloxdev.com"
-      ],
-      "ip_cidr": [
-        "128.116.0.0/17",
-        "209.206.40.0/21"
-      ]
-    },
-    {
-      "domain_suffix": [
         ".ua",
         "10minutemail.com",
         "1337x.to",
