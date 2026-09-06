@@ -35,7 +35,6 @@ jobs:
           - ovh
           - digitalocean
           - cloudfront
-          - roblox
           - google_ai
           - google_play
           - google_meet
